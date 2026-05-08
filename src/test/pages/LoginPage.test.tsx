@@ -70,7 +70,7 @@ describe('LoginPage 測試案例', () => {
             mockLogin.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
             renderComponent();
 
-            const emailInput = screen.getByLabelText('電子郵件000');
+            const emailInput = screen.getByLabelText('電子郵件');
             const passwordInput = screen.getByLabelText('密碼');
             const submitBtn = screen.getByRole('button', { name: '登入' });
 
