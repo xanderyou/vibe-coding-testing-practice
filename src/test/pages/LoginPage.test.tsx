@@ -31,13 +31,13 @@ describe('LoginPage 測試案例', () => {
         mockClearAuthExpiredMessage = vi.fn();
 
         mockUseAuth.mockReturnValue({
-            login: mockLogin,
+            login: mockLogin as any,
             isAuthenticated: false,
             user: null,
             token: null,
             isLoading: false,
             authExpiredMessage: '',
-            clearAuthExpiredMessage: mockClearAuthExpiredMessage,
+            clearAuthExpiredMessage: mockClearAuthExpiredMessage as any,
             logout: vi.fn(),
             checkAuth: vi.fn(),
         });
@@ -196,13 +196,13 @@ describe('LoginPage 測試案例', () => {
     describe('【路由導向】', () => {
         it('若使用者已登入，造訪登入頁應該自動導向至 /dashboard', () => {
             mockUseAuth.mockReturnValue({
-                login: mockLogin,
+                login: mockLogin as any,
                 isAuthenticated: true,
                 user: null,
                 token: 'fake-token',
                 isLoading: false,
                 authExpiredMessage: '',
-                clearAuthExpiredMessage: mockClearAuthExpiredMessage,
+                clearAuthExpiredMessage: mockClearAuthExpiredMessage as any,
                 logout: vi.fn(),
                 checkAuth: vi.fn(),
             });
@@ -214,13 +214,13 @@ describe('LoginPage 測試案例', () => {
     describe('【AuthContext 狀態】', () => {
         it('若有登入過期訊息，應該顯示該訊息並清除狀態', () => {
             mockUseAuth.mockReturnValue({
-                login: mockLogin,
+                login: mockLogin as any,
                 isAuthenticated: false,
                 user: null,
                 token: null,
                 isLoading: false,
                 authExpiredMessage: '登入狀態已過期',
-                clearAuthExpiredMessage: mockClearAuthExpiredMessage,
+                clearAuthExpiredMessage: mockClearAuthExpiredMessage as any,
                 logout: vi.fn(),
                 checkAuth: vi.fn(),
             });

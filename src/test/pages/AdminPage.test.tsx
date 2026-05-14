@@ -29,12 +29,12 @@ describe('AdminPage 測試案例', () => {
         mockUseAuth.mockReturnValue({
             login: vi.fn(),
             isAuthenticated: true,
-            user: { id: 1, email: 'admin@example.com', username: 'Admin', role: 'admin' },
+            user: { username: 'Admin', role: 'admin' },
             token: 'fake-token',
             isLoading: false,
             authExpiredMessage: '',
             clearAuthExpiredMessage: vi.fn(),
-            logout: mockLogout,
+            logout: mockLogout as any,
             checkAuth: vi.fn(),
         });
     });

@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DashboardPage } from '../../pages/DashboardPage';
 import { BrowserRouter } from 'react-router-dom';
 import * as AuthContext from '../../context/AuthContext';
@@ -37,12 +37,12 @@ describe('DashboardPage 測試案例', () => {
         mockUseAuth.mockReturnValue({
             login: vi.fn(),
             isAuthenticated: true,
-            user: { id: 1, email: 'test@example.com', username: 'TestUser', role: 'admin' },
+            user: { username: 'TestUser', role: 'admin' },
             token: 'fake-token',
             isLoading: false,
             authExpiredMessage: '',
             clearAuthExpiredMessage: vi.fn(),
-            logout: mockLogout,
+            logout: mockLogout as any,
             checkAuth: vi.fn(),
         });
 
@@ -73,7 +73,7 @@ describe('DashboardPage 測試案例', () => {
         it('當使用者角色不為 admin 時，不應該顯示管理後台連結', () => {
             mockUseAuth.mockReturnValue({
                 ...mockUseAuth(),
-                user: { id: 1, email: 'test@example.com', username: 'User', role: 'user' },
+                user: { username: 'User', role: 'user' },
             });
             renderComponent();
             expect(screen.queryByText('🛠️ 管理後台')).not.toBeInTheDocument();
